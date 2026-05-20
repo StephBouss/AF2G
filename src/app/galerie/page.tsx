@@ -2,25 +2,41 @@
 
 import { FadeIn, SlideUp } from "@/components/ui/animations";
 import { useState } from "react";
-import { X, ZoomIn } from "lucide-react";
+import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-// Placeholder photos array with varying aspect ratios for masonry effect
 const photos = [
-  { id: 1, height: "h-64", category: "Événement", image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop" },
-  { id: 2, height: "h-96", category: "Action Sociale", image: "https://images.unsplash.com/photo-1593113589914-00ef4e562f05?q=80&w=800&auto=format&fit=crop" },
-  { id: 3, height: "h-80", category: "Formation", image: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=800&auto=format&fit=crop" },
-  { id: 4, height: "h-72", category: "Solidarité", image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" },
-  { id: 5, height: "h-96", category: "Cérémonie", image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop" },
-  { id: 6, height: "h-64", category: "Action Sociale", image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?q=80&w=800&auto=format&fit=crop" },
-  { id: 7, height: "h-80", category: "Événement", image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800&auto=format&fit=crop" },
-  { id: 8, height: "h-72", category: "Formation", image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800&auto=format&fit=crop" },
-  { id: 9, height: "h-96", category: "Solidarité", image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop" },
+  { id: 1, height: "h-64", category: "Session de travail", image: "/gallery-1.jpg" },
+  { id: 2, height: "h-96", category: "Le Bureau", image: "/gallery-2.jpg" },
+  { id: 3, height: "h-80", category: "Visite sur le terrain", image: "/gallery-3.jpg" },
+  { id: 4, height: "h-72", category: "Délégation", image: "/gallery-4.jpg" },
+  { id: 5, height: "h-96", category: "Rencontre Officielle", image: "/gallery-5.jpg" },
+  { id: 6, height: "h-80", category: "Rencontre Officielle", image: "/gallery-6.jpg" },
+  { id: 7, height: "h-96", category: "Délégation AF2G", image: "/gallery-7.jpg" },
+  { id: 8, height: "h-64", category: "Événement", image: "/gallery-8.jpg" },
+  { id: 9, height: "h-80", category: "Intervention", image: "/gallery-9.jpg" },
+  { id: 10, height: "h-72", category: "Visite INPTIC", image: "/gallery-10.jpg" },
 ];
 
 export default function Galerie() {
   const [selectedPhoto, setSelectedPhoto] = useState<typeof photos[0] | null>(null);
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedPhoto) return;
+    const currentIndex = photos.findIndex((p) => p.id === selectedPhoto.id);
+    const nextIndex = (currentIndex + 1) % photos.length;
+    setSelectedPhoto(photos[nextIndex]);
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!selectedPhoto) return;
+    const currentIndex = photos.findIndex((p) => p.id === selectedPhoto.id);
+    const prevIndex = (currentIndex - 1 + photos.length) % photos.length;
+    setSelectedPhoto(photos[prevIndex]);
+  };
 
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-primary-black">
@@ -37,18 +53,18 @@ export default function Galerie() {
         </div>
       </section>
 
-      {/* MASONRY GALLERY */}
+      {/* GRID GALLERY */}
       <section className="py-16 pb-32">
         <div className="container mx-auto px-6 md:px-12">
           <FadeIn>
-            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {photos.map((photo) => (
                 <div
                   key={photo.id}
-                  className="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-sm bg-luxury-gray"
+                  className="relative group cursor-pointer overflow-hidden rounded-sm bg-luxury-gray aspect-[4/3]"
                   onClick={() => setSelectedPhoto(photo)}
                 >
-                  <div className={`w-full ${photo.height} relative flex items-center justify-center transition-transform duration-700 group-hover:scale-105`}>
+                  <div className="w-full h-full relative flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
                      <Image src={photo.image} alt={photo.category} fill className="object-cover" />
                   </div>
                   
@@ -90,6 +106,21 @@ export default function Galerie() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image src={selectedPhoto.image} alt={selectedPhoto.category} fill className="object-contain" />
+              
+              {/* Navigation Buttons */}
+              <button
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary-black/50 hover:bg-primary-gold text-elegant-white hover:text-primary-black rounded-full flex items-center justify-center transition-all backdrop-blur-sm"
+                onClick={handlePrev}
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              
+              <button
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-primary-black/50 hover:bg-primary-gold text-elegant-white hover:text-primary-black rounded-full flex items-center justify-center transition-all backdrop-blur-sm"
+                onClick={handleNext}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
             </motion.div>
           </motion.div>
         )}

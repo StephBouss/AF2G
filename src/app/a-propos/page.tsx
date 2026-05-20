@@ -8,12 +8,16 @@ export default function APropos() {
   return (
     <div className="flex flex-col min-h-screen pt-24">
       {/* HEADER SECTION */}
-      <section className="py-20 bg-luxury-gray relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-gold/5 via-transparent to-transparent -z-10" />
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-32 relative overflow-hidden bg-primary-black z-0">
+        {/* Background Image with Opacity */}
+        <div className="absolute inset-0 z-[-2] bg-[url('/about-header.jpg')] bg-cover bg-[center_30%] opacity-40" />
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 z-[-1] bg-gradient-to-b from-primary-black/50 via-primary-black/80 to-primary-black" />
+        
+        <div className="container mx-auto px-6 text-center relative z-10">
           <SlideUp>
-            <h1 className="text-4xl md:text-6xl font-serif mb-6 text-gradient-gold">À propos de l'AF2G</h1>
-            <p className="text-xl text-elegant-white/70 max-w-2xl mx-auto font-light">
+            <h1 className="text-4xl md:text-6xl font-serif mb-6 text-gradient-gold drop-shadow-sm">À propos de l'AF2G</h1>
+            <p className="text-xl text-elegant-white/90 max-w-2xl mx-auto font-light drop-shadow-md">
               Découvrez l'histoire, la mission et la vision de l'Association des Femmes Greffières du Gabon.
             </p>
           </SlideUp>

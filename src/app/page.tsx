@@ -10,19 +10,19 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const slides = [
   {
-    title: "Amour • Solidarité • Pouvoir",
-    subtitle: "S'unir pour bâtir une justice plus équitable au Gabon.",
-    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop"
+    title: "Rencontre Officielle",
+    subtitle: "Une audience auprès des autorités pour porter la voix des femmes greffières.",
+    image: "/slider-1.jpg"
   },
   {
-    title: "L'Excellence au Féminin",
-    subtitle: "Promouvoir le leadership au sein du système judiciaire.",
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop"
+    title: "L'Équipe de l'AF2G",
+    subtitle: "Des membres dynamiques et engagés pour l'excellence au sein de notre profession.",
+    image: "/slider-2.jpg"
   },
   {
-    title: "Un Réseau Fort et Engagé",
-    subtitle: "Des actions concrètes pour un impact social durable.",
-    image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=2000&auto=format&fit=crop"
+    title: "Concertation et Action",
+    subtitle: "Des sessions de travail stratégiques pour bâtir une justice plus équitable au Gabon.",
+    image: "/slider-3.jpg"
   }
 ];
 
@@ -32,7 +32,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 8000); // Change slide every 8 seconds
     return () => clearInterval(timer);
   }, []);
 

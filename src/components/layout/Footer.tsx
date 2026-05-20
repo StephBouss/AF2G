@@ -49,15 +49,19 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-elegant-white/60">
                 <MapPin className="w-5 h-5 text-primary-gold shrink-0 mt-0.5" />
-                <span className="font-light">Libreville, Gabon<br />Palais de Justice</span>
+                <span className="font-light">
+                  Boulevard Triomphal, Galerie Valée Sainte Marie, Box 05<br />
+                  à la Mezzanine (en face de l'hypermarché MBOLO)<br />
+                  BP: 12 201 Libreville - Gabon
+                </span>
               </li>
               <li className="flex items-center gap-3 text-elegant-white/60">
                 <Phone className="w-5 h-5 text-primary-gold shrink-0" />
-                <span className="font-light">+241 XX XX XX XX</span>
+                <span className="font-light">(+241) 66 67 22 50 / 074 41 30 71</span>
               </li>
               <li className="flex items-center gap-3 text-elegant-white/60">
                 <Mail className="w-5 h-5 text-primary-gold shrink-0" />
-                <span className="font-light">contact@af2g.org</span>
+                <span className="font-light">associationAF2G@gmail.com</span>
               </li>
             </ul>
           </div>

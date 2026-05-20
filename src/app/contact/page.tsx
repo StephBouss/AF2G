@@ -45,7 +45,11 @@ export default function Contact() {
                         </div>
                         <div>
                           <h4 className="font-serif text-lg text-elegant-white mb-1">Adresse</h4>
-                          <p className="text-elegant-white/60 font-light">Palais de Justice<br/>Libreville, Gabon</p>
+                          <p className="text-elegant-white/60 font-light">
+                            Boulevard Triomphal, Galerie Valée Sainte Marie, Box 05<br/>
+                            à la Mezzanine (en face de l'hypermarché MBOLO)<br/>
+                            BP: 12 201 Libreville - Gabon
+                          </p>
                         </div>
                       </div>
                     </StaggerItem>
@@ -57,7 +61,7 @@ export default function Contact() {
                         </div>
                         <div>
                           <h4 className="font-serif text-lg text-elegant-white mb-1">Téléphone</h4>
-                          <p className="text-elegant-white/60 font-light">+241 XX XX XX XX</p>
+                          <p className="text-elegant-white/60 font-light">(+241) 66 67 22 50 / 074 41 30 71</p>
                         </div>
                       </div>
                     </StaggerItem>
@@ -69,7 +73,7 @@ export default function Contact() {
                         </div>
                         <div>
                           <h4 className="font-serif text-lg text-elegant-white mb-1">Email</h4>
-                          <p className="text-elegant-white/60 font-light">contact@af2g.org</p>
+                          <p className="text-elegant-white/60 font-light">associationAF2G@gmail.com</p>
                         </div>
                       </div>
                     </StaggerItem>
