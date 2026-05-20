@@ -1,0 +1,249 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Heart, Shield, Users, Trophy, Target, BookOpen } from "lucide-react";
+import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
+
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+
+const slides = [
+  {
+    title: "Amour • Solidarité • Pouvoir",
+    subtitle: "S'unir pour bâtir une justice plus équitable au Gabon.",
+    image: "https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "L'Excellence au Féminin",
+    subtitle: "Promouvoir le leadership au sein du système judiciaire.",
+    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop"
+  },
+  {
+    title: "Un Réseau Fort et Engagé",
+    subtitle: "Des actions concrètes pour un impact social durable.",
+    image: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=2000&auto=format&fit=crop"
+  }
+];
+
+export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000); // Change slide every 5 seconds
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* HERO SLIDER SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-primary-black">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 z-0"
+          >
+            <div className="absolute inset-0 bg-primary-black/60 z-10" />
+            <Image
+              src={slides[currentSlide].image}
+              alt="Slide background"
+              fill
+              className="object-cover"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+          <FadeIn delay={0.2} duration={1}>
+            <div className="relative mb-8 glow-gold rounded-full flex items-center justify-center p-4 bg-primary-black/20 backdrop-blur-sm border border-primary-gold/10">
+              <Image 
+                src="/logo.png" 
+                alt="Logo AF2G" 
+                width={160} 
+                height={160} 
+                className="object-contain"
+              />
+            </div>
+          </FadeIn>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`text-${currentSlide}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="max-w-4xl"
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight mb-6 text-elegant-white">
+                {slides[currentSlide].title}
+              </h1>
+              <p className="text-xl md:text-2xl text-elegant-white/90 font-light mb-12 uppercase tracking-widest drop-shadow-lg">
+                {slides[currentSlide].subtitle}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <FadeIn delay={0.8} className="flex flex-col sm:flex-row gap-6">
+            <Link
+              href="/adhesion"
+              className="px-8 py-4 bg-primary-gold text-primary-black uppercase tracking-wider text-sm font-medium hover:bg-white transition-all duration-300 rounded-sm"
+            >
+              Rejoindre l'association
+            </Link>
+            <Link
+              href="/contact"
+              className="px-8 py-4 border border-white/20 text-elegant-white uppercase tracking-wider text-sm font-medium hover:border-primary-gold hover:text-primary-gold transition-all duration-300 rounded-sm backdrop-blur-sm bg-primary-black/30"
+            >
+              Nous contacter
+            </Link>
+          </FadeIn>
+
+          {/* Slider Indicators */}
+          <div className="absolute bottom-10 flex gap-3 z-20">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  currentSlide === index ? "bg-primary-gold scale-125 glow-gold" : "bg-white/30 hover:bg-white/50"
+                }`}
+                aria-label={`Aller au slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PRESENTATION SECTION */}
+      <section className="py-24 bg-luxury-gray relative">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <SlideUp>
+              <h2 className="text-3xl md:text-5xl font-serif mb-8">Qui sommes-nous ?</h2>
+              <div className="w-24 h-1 bg-primary-gold mx-auto mb-10"></div>
+              <p className="text-lg md:text-xl text-elegant-white/70 leading-relaxed font-light">
+                L'AF2G est une institution dédiée à l'excellence, au leadership et à l'épanouissement des femmes au sein du système judiciaire gabonais. Nous unissons nos forces pour promouvoir la solidarité, défendre nos droits et impacter positivement notre société à travers des actions sociales concrètes.
+              </p>
+            </SlideUp>
+          </div>
+        </div>
+      </section>
+
+      {/* VALEURS SECTION */}
+      <section className="py-24 bg-primary-black">
+        <div className="container mx-auto px-6 md:px-12">
+          <SlideUp>
+            <h2 className="text-3xl md:text-5xl font-serif text-center mb-16">Nos Valeurs</h2>
+          </SlideUp>
+          
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Amour", icon: Heart, desc: "L'empathie et la bienveillance au cœur de toutes nos actions." },
+              { title: "Solidarité", icon: Users, desc: "Une sororité infaillible pour s'élever mutuellement." },
+              { title: "Pouvoir", icon: Shield, desc: "Le leadership et l'affirmation de la femme gabonaise." }
+            ].map((valeur, i) => (
+              <StaggerItem key={i}>
+                <div className="p-10 border border-white/5 bg-luxury-gray/50 hover:bg-luxury-gray hover:border-primary-gold/50 transition-all duration-500 rounded-sm group h-full">
+                  <valeur.icon className="w-12 h-12 text-primary-gold mb-6 group-hover:scale-110 transition-transform duration-500" />
+                  <h3 className="text-2xl font-serif mb-4">{valeur.title}</h3>
+                  <p className="text-elegant-white/60 font-light leading-relaxed">{valeur.desc}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* CHIFFRES CLÉS */}
+      <section className="py-24 bg-[url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center bg-fixed relative">
+        <div className="absolute inset-0 bg-primary-black/90 backdrop-blur-sm"></div>
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+            {[
+              { number: "500+", label: "Membres" },
+              { number: "9", label: "Provinces" },
+              { number: "50+", label: "Actions Sociales" },
+              { number: "10k+", label: "Femmes Impactées" }
+            ].map((stat, i) => (
+              <StaggerItem key={i}>
+                <div className="text-4xl md:text-6xl font-serif text-primary-gold mb-4 font-bold">{stat.number}</div>
+                <div className="text-sm md:text-base uppercase tracking-widest text-elegant-white/80">{stat.label}</div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* NOS ACTIONS APERÇU */}
+      <section className="py-24 bg-primary-black">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex justify-between items-end mb-16">
+            <SlideUp>
+              <h2 className="text-3xl md:text-5xl font-serif">Nos Actions</h2>
+              <div className="w-24 h-1 bg-primary-gold mt-6"></div>
+            </SlideUp>
+            <Link href="/actions" className="hidden md:flex items-center gap-2 text-primary-gold hover:text-white transition-colors group">
+              <span className="uppercase tracking-wider text-sm">Voir tout</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { title: "Leadership & Formation", icon: Trophy, image: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=800&auto=format&fit=crop" },
+              { title: "Soutien Social", icon: Heart, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" },
+              { title: "Sensibilisation", icon: Target, image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop" }
+            ].map((action, i) => (
+              <StaggerItem key={i}>
+                <div className="group cursor-pointer">
+                  <div className="relative h-64 bg-luxury-gray rounded-sm overflow-hidden mb-6">
+                    <Image src={action.image} alt={action.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-black/90 to-transparent z-10"></div>
+                    <action.icon className="absolute bottom-6 left-6 w-10 h-10 text-primary-gold z-20 group-hover:scale-110 transition-transform duration-500" />
+                  </div>
+                  <h3 className="text-xl font-serif mb-2 group-hover:text-primary-gold transition-colors">{action.title}</h3>
+                  <div className="w-0 h-0.5 bg-primary-gold group-hover:w-full transition-all duration-500"></div>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <div className="mt-12 text-center md:hidden">
+            <Link href="/actions" className="inline-flex items-center gap-2 text-primary-gold">
+              <span className="uppercase tracking-wider text-sm">Voir toutes nos actions</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA FINAL */}
+      <section className="py-32 relative bg-luxury-gray">
+        <div className="container mx-auto px-6 text-center">
+          <SlideUp>
+            <h2 className="text-4xl md:text-6xl font-serif mb-8">Ensemble, allons plus loin.</h2>
+            <p className="text-xl text-elegant-white/70 mb-12 max-w-2xl mx-auto font-light">
+              Rejoignez l'Association des Femmes Greffières du Gabon et participez à l'édification d'une justice forte et d'une société solidaire.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
+              <Link
+                href="/adhesion"
+                className="px-10 py-5 bg-primary-gold text-primary-black uppercase tracking-widest text-sm font-medium hover:bg-white transition-all duration-300 rounded-sm glow-gold"
+              >
+                Devenir Membre
+              </Link>
+            </div>
+          </SlideUp>
+        </div>
+      </section>
+    </div>
+  );
+}
