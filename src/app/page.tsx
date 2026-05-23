@@ -157,9 +157,16 @@ export default function Home() {
       </section>
 
       {/* BANNIÈRE CONGRÈS CIG */}
-      <section className="relative bg-dark-gray overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-dark-gray via-primary-black to-dark-gray" />
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg,#B8860B 0,#B8860B 1px,transparent 0,transparent 50%)", backgroundSize: "24px 24px" }} />
+      <section className="relative bg-[#110B02] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/hero-congres.jpg" 
+            alt="Visuel Congrès" 
+            fill 
+            className="object-cover object-center opacity-60"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#110B02]/80 via-[#110B02]/30 to-[#110B02]/60" />
+        </div>
         <div className="container mx-auto px-6 md:px-12 py-14 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
             <FadeIn className="flex-1">

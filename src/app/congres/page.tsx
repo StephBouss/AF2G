@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 import {
@@ -192,16 +193,21 @@ export default function CongresPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-primary-black font-sans">
+    <div className="flex flex-col min-h-screen bg-[#110B02] font-sans">
       
       {/* ═══════ HERO ═══════ */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-gray via-primary-black to-primary-black" />
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: "repeating-linear-gradient(45deg,#B8860B 0,#B8860B 1px,transparent 0,transparent 50%)", backgroundSize: "28px 28px" }}
-        />
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-primary-gold/10 blur-[150px] pointer-events-none" />
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/hero-congres.jpg" 
+            alt="Hero Congrès" 
+            fill 
+            className="object-cover object-center opacity-60"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#110B02]/30 via-[#110B02]/70 to-[#110B02]" />
+        </div>
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full bg-primary-gold/10 blur-[150px] pointer-events-none z-0" />
         
         <div className="container mx-auto px-6 relative z-10 text-center py-24 flex flex-col items-center">
           <FadeIn>
@@ -258,7 +264,7 @@ export default function CongresPage() {
 
       {/* ═══════ POURQUOI INVESTIR ═══════ */}
       <Divider />
-      <section className="py-24 bg-dark-gray relative overflow-hidden">
+      <section className="py-24 bg-[#1A1104] relative overflow-hidden">
         <div className="absolute -right-40 top-20 w-96 h-96 bg-primary-gold/5 blur-[120px] rounded-full pointer-events-none" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <SlideUp>
@@ -273,7 +279,7 @@ export default function CongresPage() {
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             <StaggerItem>
-              <div className="p-8 bg-luxury-gray/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
+              <div className="p-8 bg-[#241806]/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
                 <Users className="w-10 h-10 text-primary-gold mb-6" />
                 <h3 className="text-3xl font-serif font-bold text-elegant-white mb-2">1000+</h3>
                 <p className="text-sm uppercase tracking-widest text-primary-gold mb-4">Participants Attendus</p>
@@ -281,7 +287,7 @@ export default function CongresPage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="p-8 bg-luxury-gray/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
+              <div className="p-8 bg-[#241806]/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
                 <Globe className="w-10 h-10 text-primary-gold mb-6" />
                 <h3 className="text-3xl font-serif font-bold text-elegant-white mb-2">10+</h3>
                 <p className="text-sm uppercase tracking-widest text-primary-gold mb-4">Pays Invités</p>
@@ -289,14 +295,14 @@ export default function CongresPage() {
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="p-8 bg-luxury-gray/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
+              <div className="p-8 bg-[#241806]/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
                 <Briefcase className="w-10 h-10 text-primary-gold mb-6" />
                 <h3 className="text-xl font-serif font-bold text-elegant-white mb-2 leading-snug">Portée & Visibilité Exceptionnelles</h3>
                 <p className="text-elegant-white/50 text-sm mt-4">Soutenu par le Ministre de la Justice et en collaboration avec <strong>18 ministères</strong> et administrations publiques.</p>
               </div>
             </StaggerItem>
             <StaggerItem>
-              <div className="p-8 bg-luxury-gray/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
+              <div className="p-8 bg-[#241806]/40 border border-white/5 rounded-sm h-full hover:border-primary-gold/30 transition-colors">
                 <Shield className="w-10 h-10 text-primary-gold mb-6" />
                 <h3 className="text-xl font-serif font-bold text-elegant-white mb-2 leading-snug">Auditoire de Haute Qualité</h3>
                 <p className="text-elegant-white/50 text-sm mt-4">Présidé par des professeurs éminents, docteurs et responsables d'organisations régionales.</p>
@@ -316,7 +322,7 @@ export default function CongresPage() {
 
       {/* ═══════ BONUS EXCLUSIFS ═══════ */}
       <Divider />
-      <section className="py-20 bg-primary-black">
+      <section className="py-20 bg-[#110B02]">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1">
@@ -354,7 +360,7 @@ export default function CongresPage() {
               <SlideUp delay={0.2}>
                 <div className="aspect-square max-w-md mx-auto relative">
                   <div className="absolute inset-0 bg-gradient-to-tr from-primary-gold/20 to-transparent rounded-full animate-[spin_10s_linear_infinite]" />
-                  <div className="absolute inset-4 bg-primary-black rounded-full border border-primary-gold/30 flex items-center justify-center p-10 text-center">
+                  <div className="absolute inset-4 bg-[#110B02] rounded-full border border-primary-gold/30 flex items-center justify-center p-10 text-center">
                     <div>
                       <Crown className="w-16 h-16 text-primary-gold mx-auto mb-4" />
                       <h3 className="text-2xl font-serif font-bold text-elegant-white mb-2">Partenaire Privilégié</h3>
@@ -370,7 +376,7 @@ export default function CongresPage() {
 
       {/* ═══════ PACKS PARTENAIRES ═══════ */}
       <Divider />
-      <section id="packs" className="py-24 bg-luxury-gray relative">
+      <section id="packs" className="py-24 bg-[#241806] relative">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-primary-gold/50 to-transparent" />
         <div className="container mx-auto px-6 md:px-12">
           <SlideUp>
@@ -384,7 +390,7 @@ export default function CongresPage() {
             {packs.map((pack, i) => (
               <SlideUp key={pack.id} delay={i * 0.1} className="h-full">
                 <div 
-                  className={`h-full flex flex-col relative bg-primary-black border rounded-md overflow-hidden transition-all duration-300 ${
+                  className={`h-full flex flex-col relative bg-[#110B02] border rounded-md overflow-hidden transition-all duration-300 ${
                     selectedPack === pack.id 
                       ? `${pack.borderColor} ring-2 ring-primary-gold shadow-[0_0_30px_rgba(184,134,11,0.2)] scale-105 z-10` 
                       : `${pack.borderColor} hover:border-primary-gold/50 hover:-translate-y-2`
@@ -446,7 +452,7 @@ export default function CongresPage() {
 
       {/* ═══════ FORMULAIRE PARTENARIAT ═══════ */}
       <Divider />
-      <section id="formulaire" className="py-24 bg-primary-black relative">
+      <section id="formulaire" className="py-24 bg-[#110B02] relative">
         <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-primary-gold/5 blur-[150px] rounded-full pointer-events-none" />
         <div className="container mx-auto px-6 md:px-12 relative z-10">
           <div className="max-w-4xl mx-auto">
@@ -484,7 +490,7 @@ export default function CongresPage() {
                   </button>
                 </motion.div>
               ) : (
-                <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-luxury-gray/40 border border-white/10 p-8 md:p-12 rounded-sm backdrop-blur-md">
+                <motion.div key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-[#241806]/40 border border-white/10 p-8 md:p-12 rounded-sm backdrop-blur-md">
                   <form onSubmit={handleSubmit} className="space-y-8">
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -493,7 +499,7 @@ export default function CongresPage() {
                         <input
                           type="text" required value={formData.denomination}
                           onChange={e => setFormData({ ...formData, denomination: e.target.value })}
-                          className="w-full px-5 py-4 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
+                          className="w-full px-5 py-4 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
                         />
                       </div>
                       <div>
@@ -502,7 +508,7 @@ export default function CongresPage() {
                           type="text" value={formData.formeJuridique}
                           onChange={e => setFormData({ ...formData, formeJuridique: e.target.value })}
                           placeholder="Ex: SARL, SA, Association..."
-                          className="w-full px-5 py-4 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white placeholder:text-white/20 outline-none transition-colors"
+                          className="w-full px-5 py-4 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white placeholder:text-white/20 outline-none transition-colors"
                         />
                       </div>
                     </div>
@@ -513,7 +519,7 @@ export default function CongresPage() {
                         <input
                           type="text" required value={formData.titre}
                           onChange={e => setFormData({ ...formData, titre: e.target.value })}
-                          className="w-full px-5 py-4 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
+                          className="w-full px-5 py-4 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
                         />
                       </div>
                       <div>
@@ -529,11 +535,11 @@ export default function CongresPage() {
                                 setFormData(prev => ({ ...prev, montant: p.price }));
                               }
                             }}
-                            className="w-full px-5 py-4 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors appearance-none"
+                            className="w-full px-5 py-4 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors appearance-none"
                           >
                             <option value="">— Sélectionnez —</option>
                             {packs.map(p => (
-                              <option key={p.id} value={p.title} className="bg-luxury-gray">{p.title}</option>
+                              <option key={p.id} value={p.title} className="bg-[#241806]">{p.title}</option>
                             ))}
                           </select>
                           <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-elegant-white/40 pointer-events-none" />
@@ -546,7 +552,7 @@ export default function CongresPage() {
                       <input
                         type="text" required value={formData.adresse}
                         onChange={e => setFormData({ ...formData, adresse: e.target.value })}
-                        className="w-full px-5 py-4 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
+                        className="w-full px-5 py-4 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
                       />
                     </div>
 
@@ -556,7 +562,7 @@ export default function CongresPage() {
                         <input
                           type="email" required value={formData.email}
                           onChange={e => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full px-5 py-4 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
+                          className="w-full px-5 py-4 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-sm text-elegant-white outline-none transition-colors"
                         />
                       </div>
                       <div>
@@ -566,10 +572,10 @@ export default function CongresPage() {
                             <select
                               value={formData.countryCode}
                               onChange={e => setFormData({ ...formData, countryCode: e.target.value })}
-                              className="h-full appearance-none bg-primary-black/50 border border-r-0 border-white/10 focus:border-primary-gold rounded-l-sm text-elegant-white px-4 pr-8 outline-none transition-colors cursor-pointer"
+                              className="h-full appearance-none bg-[#110B02]/50 border border-r-0 border-white/10 focus:border-primary-gold rounded-l-sm text-elegant-white px-4 pr-8 outline-none transition-colors cursor-pointer"
                             >
                               {countryCodes.map(c => (
-                                <option key={c.name} value={c.code} className="bg-luxury-gray text-base">
+                                <option key={c.name} value={c.code} className="bg-[#241806] text-base">
                                   {c.flag} {c.code}
                                 </option>
                               ))}
@@ -579,7 +585,7 @@ export default function CongresPage() {
                           <input
                             type="tel" required value={formData.telephone}
                             onChange={e => setFormData({ ...formData, telephone: e.target.value })}
-                            className="w-full h-full px-5 bg-primary-black/50 border border-white/10 focus:border-primary-gold rounded-r-sm text-elegant-white outline-none transition-colors"
+                            className="w-full h-full px-5 bg-[#110B02]/50 border border-white/10 focus:border-primary-gold rounded-r-sm text-elegant-white outline-none transition-colors"
                           />
                         </div>
                       </div>
@@ -590,7 +596,7 @@ export default function CongresPage() {
                       <input
                         type="text" required value={formData.montant}
                         onChange={e => setFormData({ ...formData, montant: e.target.value })}
-                        className="w-full px-5 py-4 bg-primary-black/50 border border-primary-gold/40 focus:border-primary-gold rounded-sm text-gradient-gold font-bold text-lg outline-none transition-colors"
+                        className="w-full px-5 py-4 bg-[#110B02]/50 border border-primary-gold/40 focus:border-primary-gold rounded-sm text-gradient-gold font-bold text-lg outline-none transition-colors"
                       />
                     </div>
 
@@ -616,7 +622,7 @@ export default function CongresPage() {
 
       {/* ═══════ FOOTER CONTACT ═══════ */}
       <Divider />
-      <section className="py-16 bg-dark-gray text-center">
+      <section className="py-16 bg-[#1A1104] text-center">
         <div className="container mx-auto px-6">
           <p className="text-elegant-white/50 text-sm uppercase tracking-widest mb-6">Pour plus d'informations</p>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
