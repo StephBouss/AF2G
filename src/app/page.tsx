@@ -2,11 +2,45 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Heart, Shield, Users, Trophy, Target, BookOpen } from "lucide-react";
+import { ArrowRight, Heart, Shield, Users, Trophy, Target, BookOpen, Calendar, MapPin } from "lucide-react";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
+function CIGCountdownMini() {
+  const eventDate = new Date("2026-06-08T08:00:00");
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const tick = () => {
+      const diff = eventDate.getTime() - Date.now();
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
+      setTimeLeft({
+        days: Math.floor(diff / 86400000),
+        hours: Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000) / 60000),
+        seconds: Math.floor((diff % 60000) / 1000),
+      });
+    };
+    tick();
+    const t = setInterval(tick, 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="flex gap-3 md:gap-5">
+      {[{ v: timeLeft.days, l: "J" }, { v: timeLeft.hours, l: "H" }, { v: timeLeft.minutes, l: "M" }, { v: timeLeft.seconds, l: "S" }].map(({ v, l }) => (
+        <div key={l} className="text-center">
+          <div className="w-14 md:w-16 h-14 md:h-16 bg-primary-gold/15 border border-primary-gold/50 rounded-sm flex items-center justify-center">
+            <span className="text-2xl md:text-3xl font-serif font-bold text-primary-gold">{String(v).padStart(2, "0")}</span>
+          </div>
+          <span className="text-[10px] uppercase tracking-widest text-elegant-white/50 mt-1 block">{l}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 const slides = [
   {
@@ -120,6 +154,42 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* BANNIÈRE CONGRÈS CIG */}
+      <section className="relative bg-dark-gray overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-dark-gray via-primary-black to-dark-gray" />
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "repeating-linear-gradient(45deg,#B8860B 0,#B8860B 1px,transparent 0,transparent 50%)", backgroundSize: "24px 24px" }} />
+        <div className="container mx-auto px-6 md:px-12 py-14 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+            <FadeIn className="flex-1">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-primary-gold/40 rounded-full mb-5 bg-primary-gold/10">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary-gold animate-pulse" />
+                <span className="text-primary-gold text-xs uppercase tracking-widest font-medium">Événement Historique</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-elegant-white mb-3 leading-tight">
+                1<sup>er</sup> Congrès International<br />des Greffiers
+              </h2>
+              <div className="flex flex-wrap gap-5 text-elegant-white/70 text-sm mb-6">
+                <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-primary-gold" /> 08 – 10 Juin 2026</span>
+                <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4 text-primary-gold" /> Libreville, Gabon</span>
+              </div>
+              <Link
+                href="/congres"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-primary-gold text-primary-gold uppercase tracking-wider text-sm font-medium hover:bg-primary-gold hover:text-primary-black transition-all duration-300 rounded-sm glow-gold-hover"
+              >
+                S'inscrire au Congrès
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </FadeIn>
+
+            <FadeIn delay={0.3} className="flex flex-col items-center gap-3">
+              <p className="text-elegant-white/40 text-xs uppercase tracking-widest">L'événement commence dans</p>
+              <CIGCountdownMini />
+            </FadeIn>
+          </div>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary-gold/30 to-transparent" />
       </section>
 
       {/* PRESENTATION SECTION */}

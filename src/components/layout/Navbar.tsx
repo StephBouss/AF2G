@@ -67,11 +67,12 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="/adhesion"
+              href="/congres"
               className="ml-4 px-6 py-2.5 border border-primary-gold text-primary-gold uppercase tracking-wider text-sm font-medium hover:bg-primary-gold hover:text-primary-black transition-all duration-300 glow-gold-hover rounded-sm"
             >
-              Adhérer
+              1er congres
             </Link>
+
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -123,17 +124,18 @@ export function Navbar() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: links.length * 0.1 }}
-                className="mt-8"
+                transition={{ delay: (links.length) * 0.1 }}
+                className="mt-4"
               >
                 <Link
-                  href="/adhesion"
+                  href="/congres"
                   onClick={() => setMobileMenuOpen(false)}
                   className="px-8 py-4 bg-primary-gold text-primary-black uppercase tracking-wider text-lg font-medium hover:bg-white transition-all duration-300 rounded-sm"
                 >
-                  Adhérer à l'AF2G
+                  1er congres
                 </Link>
               </motion.div>
+
             </nav>
           </motion.div>
         )}

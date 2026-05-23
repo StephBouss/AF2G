@@ -2,7 +2,22 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Share2, MessageCircle, Globe, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
+
+const FacebookIcon = ({ className }: { className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
 
 export function Footer() {
   return (
@@ -92,14 +107,14 @@ export function Footer() {
           </p>
           
           <div className="flex items-center gap-4">
-            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black transition-all">
-              <Share2 className="w-4 h-4" />
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black transition-all">
-              <MessageCircle className="w-4 h-4" />
-            </a>
-            <a href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black transition-all">
-              <Globe className="w-4 h-4" />
+            <a 
+              href="https://www.facebook.com/profile.php?id=61584585276342" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black transition-all"
+              aria-label="Facebook"
+            >
+              <FacebookIcon className="w-4 h-4" />
             </a>
           </div>
         </div>
