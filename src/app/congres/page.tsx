@@ -182,14 +182,31 @@ const countryCodes = [
 export default function CongresPage() {
   const [selectedPack, setSelectedPack] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    denomination: "", formeJuridique: "", titre: "", 
+    denomination: "", formeJuridique: "", titre: "",
     adresse: "", email: "", telephone: "", countryCode: "+241", montant: "", pack: ""
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading]     = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setPaymentError(null);
+    setIsLoading(true);
+    try {
+      const res = await fetch("/api/singpay", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.link) {
+        throw new Error(data.error || "Erreur lors de l'initialisation du paiement.");
+      }
+      window.location.href = data.link;
+    } catch (err) {
+      setPaymentError(err instanceof Error ? err.message : "Erreur inattendue. Veuillez réessayer.");
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -601,12 +618,30 @@ export default function CongresPage() {
                     </div>
 
                     <div className="pt-8 border-t border-white/10">
+                      {paymentError && (
+                        <div className="mb-6 px-5 py-4 bg-red-500/10 border border-red-500/30 rounded-sm text-red-400 text-sm text-center">
+                          {paymentError}
+                        </div>
+                      )}
                       <button
                         type="submit"
-                        className="w-full py-5 bg-primary-gold text-primary-black uppercase tracking-widest text-sm font-bold hover:bg-white transition-all duration-300 rounded-sm glow-gold flex items-center justify-center gap-3"
+                        disabled={isLoading}
+                        className="w-full py-5 bg-primary-gold text-primary-black uppercase tracking-widest text-sm font-bold hover:bg-white transition-all duration-300 rounded-sm glow-gold flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        Valider mon partenariat
-                        <ArrowRight className="w-5 h-5" />
+                        {isLoading ? (
+                          <>
+                            <svg className="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z" />
+                            </svg>
+                            Redirection vers SingPay...
+                          </>
+                        ) : (
+                          <>
+                            Payer avec SingPay
+                            <ArrowRight className="w-5 h-5" />
+                          </>
+                        )}
                       </button>
                       <p className="text-center text-elegant-white/40 text-xs mt-6">
                         Ou retournez cette fiche dûment complétée à : <a href="mailto:associationaf2g@gmail.com" className="text-primary-gold hover:underline">associationaf2g@gmail.com</a>
