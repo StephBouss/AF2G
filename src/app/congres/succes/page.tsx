@@ -74,12 +74,20 @@ function SuccessContent() {
 
   useEffect(() => {
     setConfetti(true);
+    // Mise à jour du statut en base
+    if (code) {
+      fetch("/api/singpay/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ref: code, statut: "success" }),
+      }).catch(() => {});
+    }
     const t1 = setTimeout(() => {
       setShowPopup(false);
       setTimeout(() => setShowTicket(true), 400);
     }, 3500);
     return () => clearTimeout(t1);
-  }, []);
+  }, [code]);
 
   return (
     <div className="min-h-screen bg-[#110B02] flex items-center justify-center px-6 py-24 relative overflow-hidden">

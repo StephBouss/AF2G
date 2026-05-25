@@ -15,12 +15,20 @@ function ErrorContent() {
   const [showPanel, setShowPanel]   = useState(false);
 
   useEffect(() => {
+    // Mise à jour du statut en base
+    if (ref) {
+      fetch("/api/singpay/update", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ref, statut: "failed" }),
+      }).catch(() => {});
+    }
     const t = setTimeout(() => {
       setShowPopup(false);
       setTimeout(() => setShowPanel(true), 400);
     }, 4000);
     return () => clearTimeout(t);
-  }, []);
+  }, [ref]);
 
   return (
     <div className="min-h-screen bg-[#110B02] flex items-center justify-center px-6 py-24 relative overflow-hidden">

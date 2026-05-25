@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
-const API_URL    = process.env.SINGPAY_API_URL!;
-const CLIENT_ID  = process.env.SINGPAY_CLIENT_ID!;
+const API_URL       = process.env.SINGPAY_API_URL!;
+const CLIENT_ID     = process.env.SINGPAY_CLIENT_ID!;
 const CLIENT_SECRET = process.env.SINGPAY_CLIENT_SECRET!;
-const WALLET_ID  = process.env.SINGPAY_WALLET_ID!;
-const BASE_URL   = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+const WALLET_ID     = process.env.SINGPAY_WALLET_ID!;
+const BASE_URL      = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 function generateRef(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -17,13 +18,12 @@ function generateRef(): string {
 }
 
 function parseAmount(montant: string): number {
-  // "250.000" → 250000  |  "1.500.000" → 1500000
   return parseInt(montant.replace(/\./g, ""), 10);
 }
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { denomination, pack, montant } = body;
+  const { denomination, formeJuridique, titre, adresse, email, telephone, countryCode, pack, montant } = body;
 
   if (!denomination || !pack || !montant) {
     return NextResponse.json({ error: "Champs requis manquants." }, { status: 400 });
@@ -41,6 +41,27 @@ export async function POST(req: NextRequest) {
   const errorUrl = new URL("/congres/echec", BASE_URL);
   errorUrl.searchParams.set("ref", ref);
 
+  // Enregistrement en base avec statut "pending"
+  const { error: dbError } = await supabase.from("partenariats").insert({
+    reference:      ref,
+    denomination,
+    forme_juridique: formeJuridique || null,
+    titre:          titre          || null,
+    adresse:        adresse        || null,
+    email:          email          || null,
+    telephone:      telephone      || null,
+    country_code:   countryCode    || "+241",
+    pack,
+    montant,
+    statut:         "pending",
+  });
+
+  if (dbError) {
+    console.error("Supabase insert error:", dbError);
+    return NextResponse.json({ error: "Erreur lors de l'enregistrement." }, { status: 500 });
+  }
+
+  // Appel SingPay
   const payload = {
     portefeuille:     WALLET_ID,
     reference:        ref,
@@ -66,10 +87,9 @@ export async function POST(req: NextRequest) {
   if (!singpayRes.ok) {
     const details = await singpayRes.text();
     console.error("SingPay error:", singpayRes.status, details);
-    return NextResponse.json(
-      { error: "Erreur SingPay. Veuillez réessayer.", details },
-      { status: 502 }
-    );
+    // Marquer l'enregistrement comme échoué
+    await supabase.from("partenariats").update({ statut: "failed" }).eq("reference", ref);
+    return NextResponse.json({ error: "Erreur SingPay. Veuillez réessayer.", details }, { status: 502 });
   }
 
   const data: { link: string; exp: string } = await singpayRes.json();
