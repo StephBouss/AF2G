@@ -7,6 +7,7 @@ import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { partenaires } from "@/data/partenaires";
 
 function CIGCountdownMini() {
   const eventDate = new Date("2026-06-08T08:00:00");
@@ -57,6 +58,11 @@ const slides = [
     title: "Concertation et Action",
     subtitle: "Des sessions de travail stratégiques pour bâtir une justice plus équitable au Gabon.",
     image: "/slider-3.jpg"
+  },
+  {
+    title: "Non aux Cancers des Femmes",
+    subtitle: "L'AF2G mobilisée pour la sensibilisation et la lutte contre les cancers féminins.",
+    image: "/slider-4.jpg"
   }
 ];
 
@@ -95,18 +101,6 @@ export default function Home() {
         </AnimatePresence>
 
         <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
-          <FadeIn delay={0.2} duration={1}>
-            <div className="relative mb-8 glow-gold rounded-full flex items-center justify-center p-4 bg-primary-black/20 backdrop-blur-sm border border-primary-gold/10">
-              <Image 
-                src="/logo.png" 
-                alt="Logo AF2G" 
-                width={160} 
-                height={160} 
-                className="object-contain"
-              />
-            </div>
-          </FadeIn>
-
           <AnimatePresence mode="wait">
             <motion.div
               key={`text-${currentSlide}`}
@@ -298,6 +292,41 @@ export default function Home() {
               <span className="uppercase tracking-wider text-sm">Voir toutes nos actions</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* NOS PARTENAIRES */}
+      <section className="py-16 bg-dark-gray overflow-hidden">
+        <div className="container mx-auto px-6 md:px-12 mb-10 text-center">
+          <SlideUp>
+            <h2 className="text-3xl md:text-4xl font-serif">Nos Partenaires</h2>
+            <div className="w-24 h-1 bg-primary-gold mx-auto mt-4" />
+          </SlideUp>
+        </div>
+
+        <div
+          className="overflow-hidden"
+          style={{
+            maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          }}
+        >
+          <div className="flex gap-6 w-max animate-scroll-left">
+            {[...partenaires, ...partenaires].map((p, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-md p-3 flex items-center justify-center w-36 h-20 shrink-0"
+              >
+                <Image
+                  src={p.src}
+                  alt={p.name}
+                  width={120}
+                  height={64}
+                  className="object-contain max-h-14 w-auto"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -65,10 +65,10 @@ function Countdown() {
 
 // ---------- Data ----------
 const packs = [
-  { 
-    id: "bronze", 
-    title: "BRONZE", 
-    price: "250.000", 
+  {
+    id: "bronze",
+    title: "BRONZE",
+    price: "150",
     icon: Shield,
     color: "from-orange-700/20 to-orange-900/20",
     borderColor: "border-orange-500/30",
@@ -187,6 +187,7 @@ export default function CongresPage() {
   });
   const [isLoading, setIsLoading]     = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -200,7 +201,7 @@ export default function CongresPage() {
       });
       const data = await res.json();
       if (!res.ok || !data.link) {
-        throw new Error(data.error || "Erreur lors de l'initialisation du paiement.");
+        throw new Error(data.details ? `${data.error} — ${data.details}` : data.error || "Erreur lors de l'initialisation du paiement.");
       }
       window.location.href = data.link;
     } catch (err) {

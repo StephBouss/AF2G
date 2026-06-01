@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
-const API_URL       = process.env.SINGPAY_API_URL!;
-const CLIENT_ID     = process.env.SINGPAY_CLIENT_ID!;
-const CLIENT_SECRET = process.env.SINGPAY_CLIENT_SECRET!;
-const WALLET_ID     = process.env.SINGPAY_WALLET_ID!;
+const API_URL         = process.env.SINGPAY_API_URL!;
+const CLIENT_ID       = process.env.SINGPAY_CLIENT_ID!;
+const CLIENT_SECRET   = process.env.SINGPAY_CLIENT_SECRET!;
+const WALLET_ID       = process.env.SINGPAY_WALLET_ID!;
+const DISBURSEMENT_ID = process.env.SINGPAY_DISBURSEMENT_ID!;
 const BASE_URL      = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 function generateRef(): string {
@@ -68,7 +69,7 @@ export async function POST(req: NextRequest) {
     redirect_success: successUrl.toString(),
     redirect_error:   errorUrl.toString(),
     amount,
-    disbursement:     `Partenariat CIG 2026 — Pack ${pack}`,
+    disbursement:     DISBURSEMENT_ID,
     logoURL:          `${BASE_URL}/logo.png`,
     isTransfer:       false,
   };

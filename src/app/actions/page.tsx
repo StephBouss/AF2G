@@ -2,13 +2,23 @@
 
 import { useState } from "react";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, X, Calendar, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+
+type Action = {
+  id: number;
+  title: string;
+  category: string;
+  date: string;
+  desc: string;
+  image: string;
+};
 
 const categories = ["Tout", "Solidarité", "Formation", "Leadership", "Sensibilisation", "Actions Sociales"];
 
-const actions = [
+const actions: Action[] = [
   {
     id: 1,
     title: "Séminaire de Renforcement des Capacités",
@@ -27,11 +37,11 @@ const actions = [
   },
   {
     id: 3,
-    title: "Campagne de Sensibilisation sur les Droits des Femmes",
+    title: "Campagne Octobre Rose — Sensibilisation au Cancer du Sein",
     category: "Sensibilisation",
-    date: "Janvier 2024",
-    desc: "Rencontre citoyenne pour éduquer et informer sur les droits juridiques fondamentaux.",
-    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop"
+    date: "Octobre 2024",
+    desc: "L'AF2G s'est mobilisée tout au long du mois d'octobre pour sensibiliser ses membres et le grand public au dépistage précoce du cancer du sein. Ateliers d'information, témoignages et moments de solidarité ont marqué cette campagne placée sous le signe de l'espoir et de la prévention.",
+    image: "/actions/octobre-rose.jpg"
   },
   {
     id: 4,
@@ -61,6 +71,7 @@ const actions = [
 
 export default function NosActions() {
   const [activeCategory, setActiveCategory] = useState("Tout");
+  const [selectedAction, setSelectedAction] = useState<Action | null>(null);
 
   const filteredActions = actions.filter(
     (action) => activeCategory === "Tout" || action.category === activeCategory
@@ -112,23 +123,24 @@ export default function NosActions() {
             {filteredActions.map((action) => (
               <StaggerItem key={action.id}>
                 <div className="group bg-luxury-gray border border-white/5 rounded-sm overflow-hidden hover:border-primary-gold/30 transition-colors h-full flex flex-col">
-                  {/* Image Placeholder */}
                   <div className="relative h-60 bg-[#1a1a1a] overflow-hidden">
-                     <Image src={action.image} alt={action.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                     <div className="absolute inset-0 bg-primary-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                     <div className="absolute top-4 right-4 bg-primary-gold text-primary-black text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm z-10">
-                        {action.category}
-                     </div>
+                    <Image src={action.image} alt={action.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div className="absolute inset-0 bg-primary-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                    <div className="absolute top-4 right-4 bg-primary-gold text-primary-black text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm z-10">
+                      {action.category}
+                    </div>
                   </div>
-                  
-                  {/* Content */}
+
                   <div className="p-8 flex-grow flex flex-col">
                     <span className="text-primary-gold/80 text-sm font-light mb-3">{action.date}</span>
                     <h3 className="text-2xl font-serif mb-4 text-elegant-white group-hover:text-primary-gold transition-colors">{action.title}</h3>
-                    <p className="text-elegant-white/60 font-light leading-relaxed mb-6 flex-grow">
+                    <p className="text-elegant-white/60 font-light leading-relaxed mb-6 flex-grow line-clamp-3">
                       {action.desc}
                     </p>
-                    <button className="flex items-center gap-2 text-primary-gold uppercase tracking-wider text-sm font-medium group/btn w-fit">
+                    <button
+                      onClick={() => setSelectedAction(action)}
+                      className="flex items-center gap-2 text-primary-gold uppercase tracking-wider text-sm font-medium group/btn w-fit"
+                    >
                       En savoir plus
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                     </button>
@@ -145,6 +157,72 @@ export default function NosActions() {
           )}
         </div>
       </section>
+
+      {/* MODAL DÉTAIL */}
+      <AnimatePresence>
+        {selectedAction && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-primary-black/90 backdrop-blur-sm p-4 md:p-8"
+            onClick={() => setSelectedAction(null)}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 30, scale: 0.97 }}
+              transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
+              className="relative bg-luxury-gray border border-primary-gold/20 rounded-sm overflow-hidden max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Image */}
+              <div className="relative h-72 md:h-96 w-full">
+                <Image
+                  src={selectedAction.image}
+                  alt={selectedAction.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-luxury-gray via-transparent to-transparent" />
+                <div className="absolute top-4 left-4 bg-primary-gold text-primary-black text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm">
+                  {selectedAction.category}
+                </div>
+                <button
+                  onClick={() => setSelectedAction(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-primary-black/60 hover:bg-primary-gold text-elegant-white hover:text-primary-black rounded-full flex items-center justify-center transition-all backdrop-blur-sm"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Contenu */}
+              <div className="p-8 md:p-10">
+                <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-elegant-white/50">
+                  <span className="flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4 text-primary-gold" />
+                    {selectedAction.date}
+                  </span>
+                  <span className="flex items-center gap-1.5">
+                    <Tag className="w-4 h-4 text-primary-gold" />
+                    {selectedAction.category}
+                  </span>
+                </div>
+
+                <h2 className="text-2xl md:text-3xl font-serif text-elegant-white mb-6 leading-snug">
+                  {selectedAction.title}
+                </h2>
+
+                <div className="w-16 h-0.5 bg-primary-gold mb-6" />
+
+                <p className="text-elegant-white/70 font-light leading-relaxed text-base">
+                  {selectedAction.desc}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

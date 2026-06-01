@@ -1,0 +1,16 @@
+export const partenaires = [
+  { name: "Sabuka Consulting",                  src: "/partenaires/sabuka.jpeg" },
+  { name: "Maathuty Consulting International",  src: "/partenaires/maathuty.jpeg" },
+  { name: "Idéal - Conseil",                   src: "/partenaires/ideal-conseil.jpeg" },
+  { name: "SAREDO",                             src: "/partenaires/saredo.jpeg" },
+  { name: "Elambi",                             src: "/partenaires/elambi.jpeg" },
+  { name: "JIDEC",                              src: "/partenaires/jidec.jpeg" },
+  { name: "HCE",                                src: "/partenaires/hce.jpeg" },
+  { name: "BHE Holding",                        src: "/partenaires/bhe-holding.jpeg" },
+  { name: "Finam",                              src: "/partenaires/finam.jpeg" },
+  { name: "Guènar Voyages",                     src: "/partenaires/guenar-voyages.jpeg" },
+  { name: "AFREC",                              src: "/partenaires/afrec.jpeg" },
+  { name: "SGM",                                src: "/partenaires/sgm.jpeg" },
+  { name: "Muleby",                             src: "/partenaires/muleby.jpeg" },
+  { name: "Gourmandises de Triche",             src: "/partenaires/gourmandises-de-triche.jpeg" },
+];

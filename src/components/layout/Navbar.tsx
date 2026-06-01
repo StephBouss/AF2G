@@ -46,8 +46,8 @@ export function Navbar() {
             <Image 
               src="/logo.png" 
               alt="Logo AF2G" 
-              width={50} 
-              height={50} 
+              width={64}
+              height={64}
               className="object-contain"
             />
           </Link>

@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 import { Handshake, HeartHandshake, TrendingUp, ShieldCheck } from "lucide-react";
+import { partenaires } from "@/data/partenaires";
 
 export default function Partenariats() {
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,6 +24,31 @@ export default function Partenariats() {
               Associez votre image à une institution d'excellence. Ensemble, construisons un avenir plus équitable.
             </p>
           </SlideUp>
+        </div>
+      </section>
+
+      {/* ILS NOUS FONT CONFIANCE */}
+      <section className="py-20 bg-dark-gray border-b border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <SlideUp>
+            <h2 className="text-3xl font-serif text-center mb-2">Ils nous font confiance</h2>
+            <div className="w-24 h-1 bg-primary-gold mx-auto mb-14" />
+          </SlideUp>
+          <StaggerContainer className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            {partenaires.map((p, i) => (
+              <StaggerItem key={i}>
+                <div className="bg-white rounded-md p-4 flex items-center justify-center h-28 w-full">
+                  <Image
+                    src={p.src}
+                    alt={p.name}
+                    width={140}
+                    height={80}
+                    className="object-contain max-h-20 w-auto"
+                  />
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
         </div>
       </section>
 
