@@ -68,7 +68,7 @@ const packs = [
   {
     id: "bronze",
     title: "BRONZE",
-    price: "150",
+    price: "150.000",
     icon: Shield,
     color: "from-orange-700/20 to-orange-900/20",
     borderColor: "border-orange-500/30",
