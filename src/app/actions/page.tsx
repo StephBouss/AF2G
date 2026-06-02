@@ -9,7 +9,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { actions, type Action } from "@/data/actions";
 
-const categories = ["Tout", "Solidarité", "Formation", "Leadership", "Sensibilisation", "Actions Sociales"];
+const categories = ["Tout", ...Array.from(new Set(actions.map(a => a.category)))];
 
 function ActionsContent() {
   const searchParams = useSearchParams();
