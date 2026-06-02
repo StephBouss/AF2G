@@ -13,4 +13,6 @@ export const partenaires = [
   { name: "SGM",                                src: "/partenaires/sgm.jpeg" },
   { name: "Muleby",                             src: "/partenaires/muleby.jpeg" },
   { name: "Gourmandises de Triche",             src: "/partenaires/gourmandises-de-triche.jpeg" },
+  { name: "BCOM",                               src: "/partenaires/bcom.png" },
+  { name: "Elyon Crea",                         src: "/partenaires/elyon-crea.png" },
 ];
