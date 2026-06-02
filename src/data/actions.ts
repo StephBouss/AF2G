@@ -64,6 +64,15 @@ export const actions: Action[] = [
     image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800&auto=format&fit=crop"
   },
   {
+    id: 9,
+    title: "Octobre Rose — Marche et Aérobic de Solidarité",
+    category: "Solidarité",
+    date: "Octobre 2024",
+    dateSort: 202410,
+    desc: "Dans le cadre d'Octobre Rose, l'AF2G a organisé une séance d'aérobic et de marche solidaire en plein air, réunissant des dizaines de femmes en rose. Un moment fort de cohésion, de sport et de sensibilisation au dépistage du cancer du sein, pour rappeler que la prévention est l'affaire de toutes.",
+    image: "/actions/octobre-rose-sport.jpg"
+  },
+  {
     id: 8,
     title: "Mise à Jour du Bureau de l'AF2G",
     category: "Leadership",
