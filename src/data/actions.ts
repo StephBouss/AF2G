@@ -64,6 +64,15 @@ export const actions: Action[] = [
     image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800&auto=format&fit=crop"
   },
   {
+    id: 8,
+    title: "Mise à Jour du Bureau de l'AF2G",
+    category: "Leadership",
+    date: "Janvier 2025",
+    dateSort: 202501,
+    desc: "L'AF2G a procédé à la mise à jour officielle de son bureau exécutif lors d'une cérémonie réunissant membres et invités. Présentations des nouveaux responsables, partage de la vision stratégique et renouvellement de l'engagement collectif au service des femmes greffières du Gabon.",
+    image: "/actions/mise-a-jour-bureau.jpg"
+  },
+  {
     id: 7,
     title: "Journée Internationale de l'Enfant Conscient",
     category: "Formation",
