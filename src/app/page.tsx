@@ -121,14 +121,8 @@ export default function Home() {
 
           <FadeIn delay={0.8} className="flex flex-col sm:flex-row gap-6">
             <Link
-              href="/adhesion"
-              className="px-8 py-4 bg-primary-gold text-primary-black uppercase tracking-wider text-sm font-medium hover:bg-white transition-all duration-300 rounded-sm"
-            >
-              Rejoindre l'association
-            </Link>
-            <Link
               href="/contact"
-              className="px-8 py-4 border border-white/20 text-elegant-white uppercase tracking-wider text-sm font-medium hover:border-primary-gold hover:text-primary-gold transition-all duration-300 rounded-sm backdrop-blur-sm bg-primary-black/30"
+              className="px-8 py-4 bg-primary-gold text-primary-black uppercase tracking-wider text-sm font-medium hover:bg-white transition-all duration-300 rounded-sm"
             >
               Nous contacter
             </Link>
@@ -341,10 +335,10 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link
-                href="/adhesion"
+                href="/contact"
                 className="px-10 py-5 bg-primary-gold text-primary-black uppercase tracking-widest text-sm font-medium hover:bg-white transition-all duration-300 rounded-sm glow-gold"
               >
-                Devenir Membre
+                Nous contacter
               </Link>
             </div>
           </SlideUp>

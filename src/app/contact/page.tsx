@@ -1,12 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 import { Mail, MapPin, Phone, Share2, MessageCircle, Globe, Send } from "lucide-react";
 
 export default function Contact() {
+  const [nom, setNom]         = useState("");
+  const [email, setEmail]     = useState("");
+  const [sujet, setSujet]     = useState("");
+  const [message, setMessage] = useState("");
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Merci pour votre message ! Nous vous répondrons très bientôt.");
+    const subject = encodeURIComponent(sujet);
+    const body    = encodeURIComponent(
+      `Nom : ${nom}\nEmail : ${email}\n\n${message}`
+    );
+    window.location.href = `mailto:associationAF2G@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -28,15 +38,15 @@ export default function Contact() {
       <section className="py-16 pb-32">
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col lg:flex-row gap-16">
-            
+
             {/* Infos Contact */}
             <div className="w-full lg:w-1/3">
               <FadeIn>
                 <div className="bg-luxury-gray p-10 border border-white/5 rounded-sm h-full relative overflow-hidden group hover:border-primary-gold/30 transition-colors">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary-gold/10 rounded-bl-full pointer-events-none group-hover:bg-primary-gold/20 transition-colors" />
-                  
+
                   <h2 className="text-2xl font-serif mb-10 text-elegant-white">Coordonnées</h2>
-                  
+
                   <StaggerContainer className="space-y-8">
                     <StaggerItem>
                       <div className="flex items-start gap-4">
@@ -102,30 +112,46 @@ export default function Contact() {
               <SlideUp>
                 <div className="bg-luxury-gray/50 p-8 md:p-12 border border-white/5 rounded-sm">
                   <h2 className="text-2xl font-serif mb-8 text-elegant-white">Envoyez-nous un message</h2>
-                  
+
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label className="text-sm text-elegant-white/80 uppercase tracking-wider">Nom complet</label>
-                        <input required type="text" className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light" />
+                        <input
+                          required type="text" value={nom}
+                          onChange={e => setNom(e.target.value)}
+                          className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light"
+                        />
                       </div>
                       <div className="space-y-2">
                         <label className="text-sm text-elegant-white/80 uppercase tracking-wider">Email</label>
-                        <input required type="email" className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light" />
+                        <input
+                          required type="email" value={email}
+                          onChange={e => setEmail(e.target.value)}
+                          className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light"
+                        />
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-sm text-elegant-white/80 uppercase tracking-wider">Sujet</label>
-                      <input required type="text" className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light" />
+                      <input
+                        required type="text" value={sujet}
+                        onChange={e => setSujet(e.target.value)}
+                        className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light"
+                      />
                     </div>
 
                     <div className="space-y-2">
                       <label className="text-sm text-elegant-white/80 uppercase tracking-wider">Message</label>
-                      <textarea required rows={6} className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light resize-none"></textarea>
+                      <textarea
+                        required rows={6} value={message}
+                        onChange={e => setMessage(e.target.value)}
+                        className="w-full bg-primary-black border border-white/10 rounded-sm px-4 py-3 text-elegant-white focus:outline-none focus:border-primary-gold transition-colors font-light resize-none"
+                      />
                     </div>
 
-                    <button 
+                    <button
                       type="submit"
                       className="inline-flex items-center gap-2 px-8 py-4 bg-primary-gold text-primary-black uppercase tracking-widest font-medium rounded-sm hover:bg-white transition-all duration-300 glow-gold-hover"
                     >
@@ -142,15 +168,13 @@ export default function Contact() {
 
       {/* MAP PLACEHOLDER */}
       <section className="h-96 w-full relative">
-         <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center">
-            {/* In a real scenario, this would be an iframe from Google Maps */}
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-primary-gold/50 mx-auto mb-4" />
-              <span className="font-serif text-xl text-elegant-white/50 uppercase tracking-widest">Carte Interactive Google Maps</span>
-            </div>
-         </div>
-         {/* Overlay gradient to blend with the footer smoothly */}
-         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
+        <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center">
+          <div className="text-center">
+            <MapPin className="w-12 h-12 text-primary-gold/50 mx-auto mb-4" />
+            <span className="font-serif text-xl text-elegant-white/50 uppercase tracking-widest">Carte Interactive Google Maps</span>
+          </div>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
       </section>
     </div>
   );
