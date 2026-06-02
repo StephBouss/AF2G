@@ -1,77 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 import { ArrowRight, X, Calendar, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-
-type Action = {
-  id: number;
-  title: string;
-  category: string;
-  date: string;
-  desc: string;
-  image: string;
-};
+import { actions, type Action } from "@/data/actions";
 
 const categories = ["Tout", "Solidarité", "Formation", "Leadership", "Sensibilisation", "Actions Sociales"];
 
-const actions: Action[] = [
-  {
-    id: 1,
-    title: "Séminaire de Renforcement des Capacités",
-    category: "Formation",
-    date: "Mars 2024",
-    desc: "Une formation intensive pour les greffières sur les nouvelles procédures numériques.",
-    image: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Don à l'Orphelinat de Libreville",
-    category: "Solidarité",
-    date: "Février 2024",
-    desc: "Remise de vivres et de kits scolaires aux enfants démunis.",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Campagne Octobre Rose — Sensibilisation au Cancer du Sein",
-    category: "Sensibilisation",
-    date: "Octobre 2024",
-    desc: "L'AF2G s'est mobilisée tout au long du mois d'octobre pour sensibiliser ses membres et le grand public au dépistage précoce du cancer du sein. Ateliers d'information, témoignages et moments de solidarité ont marqué cette campagne placée sous le signe de l'espoir et de la prévention.",
-    image: "/actions/octobre-rose.jpg"
-  },
-  {
-    id: 4,
-    title: "Forum du Leadership Féminin",
-    category: "Leadership",
-    date: "Décembre 2023",
-    desc: "Panel d'échanges avec des femmes leaders de divers secteurs professionnels.",
-    image: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Soutien aux Femmes Incarcérées",
-    category: "Actions Sociales",
-    date: "Novembre 2023",
-    desc: "Visite et distribution de kits d'hygiène à la prison centrale.",
-    image: "https://images.unsplash.com/photo-1593113589914-00ef4e562f05?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: 6,
-    title: "Atelier de Gestion du Stress au Travail",
-    category: "Formation",
-    date: "Octobre 2023",
-    desc: "Une session dédiée au bien-être psychologique dans le milieu judiciaire.",
-    image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800&auto=format&fit=crop"
-  }
-];
-
-export default function NosActions() {
+function ActionsContent() {
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("Tout");
   const [selectedAction, setSelectedAction] = useState<Action | null>(null);
+
+  useEffect(() => {
+    const id = searchParams.get("id");
+    if (id) {
+      const found = actions.find(a => a.id === Number(id));
+      if (found) setSelectedAction(found);
+    }
+  }, [searchParams]);
 
   const filteredActions = actions.filter(
     (action) => activeCategory === "Tout" || action.category === activeCategory
@@ -176,7 +127,6 @@ export default function NosActions() {
               className="relative bg-luxury-gray border border-primary-gold/20 rounded-sm overflow-hidden max-w-3xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Image */}
               <div className="relative h-72 md:h-96 w-full">
                 <Image
                   src={selectedAction.image}
@@ -196,7 +146,6 @@ export default function NosActions() {
                 </button>
               </div>
 
-              {/* Contenu */}
               <div className="p-8 md:p-10">
                 <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-elegant-white/50">
                   <span className="flex items-center gap-1.5">
@@ -224,5 +173,13 @@ export default function NosActions() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function NosActions() {
+  return (
+    <Suspense>
+      <ActionsContent />
+    </Suspense>
   );
 }

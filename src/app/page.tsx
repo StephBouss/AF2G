@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Heart, Shield, Users, Trophy, Target, BookOpen, Calendar, MapPin } from "lucide-react";
+import { ArrowRight, Heart, Shield, Users, Calendar, MapPin } from "lucide-react";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
 
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { partenaires } from "@/data/partenaires";
+import { actions } from "@/data/actions";
+import { useRouter } from "next/navigation";
 
 function CIGCountdownMini() {
   const eventDate = new Date("2026-06-08T08:00:00");
@@ -67,6 +69,8 @@ const slides = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const lastThreeActions = actions.slice(-3);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -262,20 +266,22 @@ export default function Home() {
           </div>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { title: "Leadership & Formation", icon: Trophy, image: "https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?q=80&w=800&auto=format&fit=crop" },
-              { title: "Soutien Social", icon: Heart, image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=800&auto=format&fit=crop" },
-              { title: "Sensibilisation", icon: Target, image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=800&auto=format&fit=crop" }
-            ].map((action, i) => (
-              <StaggerItem key={i}>
-                <div className="group cursor-pointer">
+            {lastThreeActions.map((action) => (
+              <StaggerItem key={action.id}>
+                <div
+                  className="group cursor-pointer"
+                  onClick={() => router.push(`/actions?id=${action.id}`)}
+                >
                   <div className="relative h-64 bg-luxury-gray rounded-sm overflow-hidden mb-6">
                     <Image src={action.image} alt={action.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary-black/90 to-transparent z-10"></div>
-                    <action.icon className="absolute bottom-6 left-6 w-10 h-10 text-primary-gold z-20 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary-black/90 to-transparent z-10" />
+                    <span className="absolute top-4 right-4 bg-primary-gold text-primary-black text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-sm z-20">
+                      {action.category}
+                    </span>
+                    <span className="absolute bottom-4 left-4 text-elegant-white/60 text-xs z-20">{action.date}</span>
                   </div>
                   <h3 className="text-xl font-serif mb-2 group-hover:text-primary-gold transition-colors">{action.title}</h3>
-                  <div className="w-0 h-0.5 bg-primary-gold group-hover:w-full transition-all duration-500"></div>
+                  <div className="w-0 h-0.5 bg-primary-gold group-hover:w-full transition-all duration-500" />
                 </div>
               </StaggerItem>
             ))}
