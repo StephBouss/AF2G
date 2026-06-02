@@ -24,9 +24,9 @@ function ActionsContent() {
     }
   }, [searchParams]);
 
-  const filteredActions = actions.filter(
-    (action) => activeCategory === "Tout" || action.category === activeCategory
-  );
+  const filteredActions = [...actions]
+    .filter((action) => activeCategory === "Tout" || action.category === activeCategory)
+    .sort((a, b) => b.dateSort - a.dateSort);
 
   return (
     <div className="flex flex-col min-h-screen pt-24 bg-primary-black">
