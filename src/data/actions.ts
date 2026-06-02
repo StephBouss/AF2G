@@ -63,4 +63,13 @@ export const actions: Action[] = [
     desc: "Une session dédiée au bien-être psychologique dans le milieu judiciaire.",
     image: "https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=800&auto=format&fit=crop"
   },
+  {
+    id: 7,
+    title: "Journée Internationale de l'Enfant Conscient",
+    category: "Formation",
+    date: "Décembre 2024",
+    dateSort: 202412,
+    desc: "L'AF2G a célébré la Journée Internationale de l'Enfant Conscient en réunissant enfants et encadreurs autour d'ateliers éducatifs et culturels. Une rencontre placée sous le signe de l'éveil, de la transmission des valeurs et de la promotion de l'enfance épanouie au Gabon.",
+    image: "/actions/journee-enfants.jpg"
+  },
 ];
