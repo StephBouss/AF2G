@@ -70,7 +70,7 @@ const slides = [
 
 export default function Home() {
   const router = useRouter();
-  const lastThreeActions = actions.slice(-3);
+  const lastThreeActions = [...actions].sort((a, b) => b.dateSort - a.dateSort).slice(0, 3);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
