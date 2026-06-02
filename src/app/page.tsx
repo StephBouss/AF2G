@@ -243,7 +243,7 @@ export default function Home() {
               { number: "10k+", label: "Femmes Impactées" }
             ].map((stat, i) => (
               <StaggerItem key={i}>
-                <div className="text-4xl md:text-6xl font-serif text-primary-gold mb-4 font-bold">{stat.number}</div>
+                <div className="text-3xl md:text-5xl font-serif text-primary-gold mb-4 font-bold">{stat.number}</div>
                 <div className="text-sm md:text-base uppercase tracking-widest text-elegant-white/80">{stat.label}</div>
               </StaggerItem>
             ))}
@@ -332,7 +332,7 @@ export default function Home() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="py-32 relative bg-luxury-gray">
+      <section className="py-20 md:py-32 relative bg-luxury-gray">
         <div className="container mx-auto px-6 text-center">
           <SlideUp>
             <h2 className="text-4xl md:text-6xl font-serif mb-8">Ensemble, allons plus loin.</h2>

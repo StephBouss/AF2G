@@ -65,7 +65,7 @@ export default function BureauExecutif() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {membres.map((membre, i) => (
               <StaggerItem key={i}>
-                <div className="group relative bg-luxury-gray rounded-sm overflow-hidden h-[450px]">
+                <div className="group relative bg-luxury-gray rounded-sm overflow-hidden h-[360px] md:h-[450px]">
                   {/* Image Placeholder */}
                   <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
                      <Image src={membre.image} alt={membre.nom} fill className="object-cover" />

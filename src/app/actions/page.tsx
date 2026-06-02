@@ -124,10 +124,10 @@ function ActionsContent() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 30, scale: 0.97 }}
               transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
-              className="relative bg-luxury-gray border border-primary-gold/20 rounded-sm overflow-hidden max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+              className="relative bg-luxury-gray border border-primary-gold/20 rounded-sm overflow-hidden max-w-3xl w-full max-h-[90vh] overflow-y-auto mx-2"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative h-72 md:h-96 w-full">
+              <div className="relative h-48 md:h-72 lg:h-96 w-full">
                 <Image
                   src={selectedAction.image}
                   alt={selectedAction.title}
@@ -146,7 +146,7 @@ function ActionsContent() {
                 </button>
               </div>
 
-              <div className="p-8 md:p-10">
+              <div className="p-5 md:p-10">
                 <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-elegant-white/50">
                   <span className="flex items-center gap-1.5">
                     <Calendar className="w-4 h-4 text-primary-gold" />

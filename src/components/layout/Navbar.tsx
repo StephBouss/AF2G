@@ -113,7 +113,7 @@ export function Navbar() {
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={cn(
-                      "text-2xl uppercase tracking-widest font-serif transition-colors hover:text-primary-gold",
+                      "text-xl uppercase tracking-widest font-serif transition-colors hover:text-primary-gold",
                       pathname === link.href ? "text-primary-gold" : "text-elegant-white"
                     )}
                   >
@@ -130,7 +130,7 @@ export function Navbar() {
                 <Link
                   href="/congres"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="px-8 py-4 bg-primary-gold text-primary-black uppercase tracking-wider text-lg font-medium hover:bg-white transition-all duration-300 rounded-sm"
+                  className="px-6 py-3 bg-primary-gold text-primary-black uppercase tracking-wider text-sm font-medium hover:bg-white transition-all duration-300 rounded-sm"
                 >
                   1er congres
                 </Link>

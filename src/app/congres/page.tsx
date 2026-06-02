@@ -50,7 +50,7 @@ function Countdown() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 10, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="text-3xl md:text-5xl font-serif font-bold text-primary-gold"
+                className="text-xl md:text-3xl lg:text-5xl font-serif font-bold text-primary-gold"
               >
                 {String(value).padStart(2, "0")}
               </motion.div>
@@ -238,7 +238,7 @@ export default function CongresPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight text-elegant-white leading-tight mb-6 max-w-5xl mx-auto">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-7xl font-serif font-bold tracking-tight text-elegant-white leading-tight mb-6 max-w-5xl mx-auto">
               1<sup>er</sup> CONGRÈS INTERNATIONAL DES GREFFIERS
             </h1>
             <p className="text-lg md:text-2xl text-gradient-gold font-medium uppercase tracking-[0.1em] mb-12 max-w-3xl mx-auto leading-relaxed">
@@ -247,7 +247,7 @@ export default function CongresPage() {
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="flex flex-wrap justify-center gap-6 md:gap-12 mb-16 text-elegant-white/80 text-sm md:text-base font-medium bg-white/5 px-8 py-4 rounded-full border border-white/10 backdrop-blur-md">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-12 mb-16 text-elegant-white/80 text-sm md:text-base font-medium bg-white/5 px-6 py-4 rounded-full border border-white/10 backdrop-blur-md">
               <span className="flex items-center gap-3">
                 <Calendar className="w-5 h-5 text-primary-gold" />
                 08 - 10 Juin 2026
@@ -404,7 +404,7 @@ export default function CongresPage() {
             </div>
           </SlideUp>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5 gap-6">
             {packs.map((pack, i) => (
               <SlideUp key={pack.id} delay={i * 0.1} className="h-full">
                 <div 

@@ -217,7 +217,7 @@ export default function Galerie() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="relative max-w-5xl w-full max-h-[80vh] aspect-video bg-luxury-gray rounded-sm overflow-hidden"
+              className="relative max-w-5xl w-full max-h-[70vh] aspect-video bg-luxury-gray rounded-sm overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <Image

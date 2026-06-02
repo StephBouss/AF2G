@@ -8,7 +8,7 @@ export default function APropos() {
   return (
     <div className="flex flex-col min-h-screen pt-24">
       {/* HEADER SECTION */}
-      <section className="py-32 relative overflow-hidden bg-primary-black z-0">
+      <section className="py-20 md:py-32 relative overflow-hidden bg-primary-black z-0">
         {/* Background Image with Opacity */}
         <div className="absolute inset-0 z-[-2] bg-[url('/about-header.jpg')] bg-cover bg-[center_30%] opacity-40" />
         {/* Gradient Overlay for better text readability */}
@@ -27,7 +27,7 @@ export default function APropos() {
       {/* MOT DE LA PRÉSIDENTE */}
       <section className="py-24 bg-primary-black">
         <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
             <FadeIn className="w-full lg:w-1/2">
               <div className="relative aspect-square md:aspect-[4/5] rounded-sm overflow-hidden bg-luxury-gray">
                 <div className="absolute inset-0 border-2 border-primary-gold/20 m-4 rounded-sm z-20 pointer-events-none"></div>
@@ -69,7 +69,7 @@ export default function APropos() {
         <div className="container mx-auto px-6 md:px-12">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <StaggerItem>
-              <div className="p-10 bg-primary-black border border-white/5 h-full rounded-sm hover:border-primary-gold/30 transition-colors">
+              <div className="p-6 md:p-10 bg-primary-black border border-white/5 h-full rounded-sm hover:border-primary-gold/30 transition-colors">
                 <Target className="w-12 h-12 text-primary-gold mb-6" />
                 <h3 className="text-2xl font-serif mb-4 text-elegant-white">Notre Mission</h3>
                 <p className="text-elegant-white/60 font-light leading-relaxed">
@@ -79,7 +79,7 @@ export default function APropos() {
             </StaggerItem>
             
             <StaggerItem>
-              <div className="p-10 bg-primary-black border border-white/5 h-full rounded-sm hover:border-primary-gold/30 transition-colors">
+              <div className="p-6 md:p-10 bg-primary-black border border-white/5 h-full rounded-sm hover:border-primary-gold/30 transition-colors">
                 <Eye className="w-12 h-12 text-primary-gold mb-6" />
                 <h3 className="text-2xl font-serif mb-4 text-elegant-white">Notre Vision</h3>
                 <p className="text-elegant-white/60 font-light leading-relaxed">
@@ -89,7 +89,7 @@ export default function APropos() {
             </StaggerItem>
 
             <StaggerItem>
-              <div className="p-10 bg-primary-black border border-white/5 h-full rounded-sm hover:border-primary-gold/30 transition-colors">
+              <div className="p-6 md:p-10 bg-primary-black border border-white/5 h-full rounded-sm hover:border-primary-gold/30 transition-colors">
                 <BookOpen className="w-12 h-12 text-primary-gold mb-6" />
                 <h3 className="text-2xl font-serif mb-4 text-elegant-white">Nos Objectifs</h3>
                 <ul className="text-elegant-white/60 font-light leading-relaxed space-y-2 list-disc list-inside">
@@ -113,7 +113,7 @@ export default function APropos() {
 
           <div className="max-w-4xl mx-auto relative">
             {/* Ligne verticale */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-primary-gold/20"></div>
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-primary-gold/20"></div>
 
             <StaggerContainer className="space-y-16">
               {[
