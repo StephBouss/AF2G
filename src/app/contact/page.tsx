@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/animations";
-import { Mail, MapPin, Phone, Share2, MessageCircle, Globe, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+
+const FacebookIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
 
 export default function Contact() {
   const [nom, setNom]         = useState("");
@@ -92,14 +98,13 @@ export default function Contact() {
                   <div className="mt-12 pt-8 border-t border-white/10">
                     <h4 className="font-serif text-lg text-elegant-white mb-4">Suivez-nous</h4>
                     <div className="flex items-center gap-4">
-                      <a href="#" className="w-10 h-10 rounded-full bg-primary-black border border-white/10 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black hover:border-primary-gold transition-all">
-                        <Share2 className="w-4 h-4" />
-                      </a>
-                      <a href="#" className="w-10 h-10 rounded-full bg-primary-black border border-white/10 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black hover:border-primary-gold transition-all">
-                        <MessageCircle className="w-4 h-4" />
-                      </a>
-                      <a href="#" className="w-10 h-10 rounded-full bg-primary-black border border-white/10 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black hover:border-primary-gold transition-all">
-                        <Globe className="w-4 h-4" />
+                      <a
+                        href="https://www.facebook.com/profile.php?id=61584585276342"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook AF2G"
+                        className="w-10 h-10 rounded-full bg-primary-black border border-white/10 flex items-center justify-center text-elegant-white/60 hover:bg-primary-gold hover:text-primary-black hover:border-primary-gold transition-all">
+                        <FacebookIcon />
                       </a>
                     </div>
                   </div>
