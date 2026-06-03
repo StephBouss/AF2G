@@ -4,12 +4,15 @@ import { FadeIn, SlideUp, StaggerContainer, StaggerItem } from "@/components/ui/
 import { Globe, Mail } from "lucide-react";
 import Image from "next/image";
 
-const membres = [
+type Membre = { nom: string; fonction: string; bio: string; image: string; objectPosition?: string };
+
+const membres: Membre[] = [
   {
     nom: "Me Augustine Wada épouse Barrault Adande",
     fonction: "Présidente",
     bio: "Visionnaire et leader, elle a consacré sa carrière à l'amélioration du système judiciaire et à l'empowerment des femmes greffières.",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop"
+    image: "/presidente.jpg",
+    objectPosition: "60% 20%"
   },
   {
     nom: "Nom de la Vice-Présidente",
@@ -68,7 +71,13 @@ export default function BureauExecutif() {
                 <div className="group relative bg-luxury-gray rounded-sm overflow-hidden h-[360px] md:h-[450px]">
                   {/* Image Placeholder */}
                   <div className="absolute inset-0 bg-[#1a1a1a] flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-                     <Image src={membre.image} alt={membre.nom} fill className="object-cover" />
+                     <Image
+                       src={membre.image}
+                       alt={membre.nom}
+                       fill
+                       className="object-cover"
+                       style={{ objectPosition: membre.objectPosition ?? "center top" }}
+                     />
                   </div>
                   
                   {/* Overlay Gradient */}
