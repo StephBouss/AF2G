@@ -31,11 +31,11 @@ export default function APropos() {
             <FadeIn className="w-full lg:w-1/2">
               <div className="relative aspect-square md:aspect-[4/5] rounded-sm overflow-hidden bg-luxury-gray">
                 <div className="absolute inset-0 border-2 border-primary-gold/20 m-4 rounded-sm z-20 pointer-events-none"></div>
-                <Image 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop" 
-                  alt="Présidente de l'AF2G" 
-                  fill 
-                  className="object-cover"
+                <Image
+                  src="/presidente.jpg"
+                  alt="Présidente de l'AF2G"
+                  fill
+                  className="object-cover scale-150 object-[60%_20%]"
                 />
               </div>
             </FadeIn>
