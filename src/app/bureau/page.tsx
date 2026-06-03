@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const membres = [
   {
-    nom: "Nom de la Présidente",
+    nom: "Me Augustine Wada épouse Barrault Adande",
     fonction: "Présidente",
     bio: "Visionnaire et leader, elle a consacré sa carrière à l'amélioration du système judiciaire et à l'empowerment des femmes greffières.",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop"

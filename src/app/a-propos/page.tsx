@@ -55,7 +55,7 @@ export default function APropos() {
                   Nous plaçons l'amour, la solidarité et l'empowerment (le pouvoir) au cœur de notre démarche pour bâtir une justice plus équitable et soutenir nos paires à travers tout le Gabon.
                 </p>
                 <div className="pt-6">
-                  <h4 className="font-serif text-xl text-elegant-white">Nom de la Présidente</h4>
+                  <h4 className="font-serif text-xl text-elegant-white">Me Augustine Wada épouse Barrault Adande</h4>
                   <p className="text-primary-gold/80 text-sm uppercase tracking-widest mt-1">Présidente de l'AF2G</p>
                 </div>
               </div>
