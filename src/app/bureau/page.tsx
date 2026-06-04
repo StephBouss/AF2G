@@ -18,31 +18,31 @@ const membres: Membre[] = [
     nom: "Nom de la Vice-Présidente",
     fonction: "Vice-Présidente",
     bio: "Forte de son expérience, elle seconde la présidence dans la mise en œuvre des actions stratégiques de l'association.",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&auto=format&fit=crop"
+    image: "/bureau-groupe.jpg"
   },
   {
     nom: "Nom de la Secrétaire",
     fonction: "Secrétaire Générale",
     bio: "Garante du fonctionnement administratif, elle assure la coordination et le suivi rigoureux des activités de l'AF2G.",
-    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop"
+    image: "/bureau-groupe.jpg"
   },
   {
     nom: "Nom de la Trésorière",
     fonction: "Trésorière",
     bio: "Experte en gestion financière, elle veille à la transparence et à l'optimisation des ressources de notre institution.",
-    image: "https://images.unsplash.com/photo-1531123897727-8f129e1bfa8c?q=80&w=800&auto=format&fit=crop"
+    image: "/bureau-groupe.jpg"
   },
   {
     nom: "Nom de la Conseillère",
     fonction: "Conseillère Juridique",
     bio: "Elle apporte son expertise pointue pour éclairer les décisions du bureau et défendre les intérêts de nos membres.",
-    image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?q=80&w=800&auto=format&fit=crop"
+    image: "/bureau-groupe.jpg"
   },
   {
     nom: "Nom de la Chargée de Com",
     fonction: "Chargée de Communication",
     bio: "Elle valorise l'image de l'AF2G et assure le rayonnement de nos actions auprès du grand public et des partenaires.",
-    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?q=80&w=800&auto=format&fit=crop"
+    image: "/bureau-groupe.jpg"
   }
 ];
 
