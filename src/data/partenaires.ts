@@ -15,4 +15,5 @@ export const partenaires = [
   { name: "Gourmandises de Triche",             src: "/partenaires/gourmandises-de-triche.jpeg" },
   { name: "BCOM",                               src: "/partenaires/bcom.png" },
   { name: "Elyon Crea",                         src: "/partenaires/elyon-crea.png" },
+  { name: "Optimiste Communication & Marketing", src: "/partenaires/optimiste.png" },
 ];
