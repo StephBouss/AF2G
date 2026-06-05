@@ -65,6 +65,11 @@ const slides = [
     title: "Non aux Cancers des Femmes",
     subtitle: "L'AF2G mobilisée pour la sensibilisation et la lutte contre les cancers féminins.",
     image: "/slider-4.jpg"
+  },
+  {
+    title: "Ils viennent du Canada pour y être !",
+    subtitle: "Des délégués traversent des océans pour participer au 1er Congrès International des Greffiers. Il est encore temps — inscrivez-vous maintenant.",
+    image: "/slider-5.jpg"
   }
 ];
 
